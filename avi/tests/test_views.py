@@ -186,7 +186,7 @@ once it is deployed in GAVIP.
         self.job = DemoModel.objects.get()
 
         # /avi/job_list/
-        resp_job_page = self.client.get(reverse('avi:plugins:jobrequest_list'))
+        resp_job_page = self.client.get(reverse('avi:job_list:jobrequest_list'))
         self.assertEqual(resp_job_page.status_code, 200)
         # /avi/job_data/###/
         resp_job_data = self.client.get(reverse('avi:job_data',
@@ -201,13 +201,13 @@ once it is deployed in GAVIP.
     def test_job_list_page_recieves_expected_context(self):
 
         # /avi/job_list/
-        resp_job_page = self.client.get(reverse('avi:plugins:jobrequest_list'))
+        resp_job_page = self.client.get(reverse('avi:job_list:jobrequest_list'))
         self.assertIsNone(resp_job_page.context)
 
     def test_job_list_page_returns_expected_content(self):
 
         # /avi/job_list/
-        resp_job_page = self.client.get(reverse('avi:plugins:jobrequest_list'))
+        resp_job_page = self.client.get(reverse('avi:job_list:jobrequest_list'))
 
         # No templates used to render the response
 
