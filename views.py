@@ -90,16 +90,3 @@ def job_result(request, job_id):
     with open(file_path, 'r') as out_file:
         context.update(json.load(out_file))
     return render(request, 'avi/job_result.html', context=context)
-
-
-@require_http_methods(["GET"])
-def job_result_public(request, job_id, celery_task_id):
-    """
-    @req: REQ-0035
-    @comp: AVI Authentication and Authorization
-    """
-    job = get_object_or_404(DemoModel, request_id=job_id)
-    if celery_task_id == job.request.celery_task_id:
-        return job_result(request, job_id)
-    else:
-        raise ObjectDoesNotExist("Invalid public URL")
