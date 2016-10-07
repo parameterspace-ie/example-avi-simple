@@ -94,8 +94,6 @@ class ModelAVIViewsTestcase(TestCase):
         self.assertTemplateUsed(response,
                                 'avi/panel_job_list.html')
         self.assertTemplateUsed(response,
-                                'avi/panel_result.html')
-        self.assertTemplateUsed(response,
                                 'avi/panel_help.html')
 
         self.assertIn('Simple AVI',
@@ -268,8 +266,6 @@ once it is deployed in GAVIP.
                                 'avi/job_result.html')
         self.assertTemplateUsed(response,
                                 'base/base.html')
-        self.assertTemplateUsed(response,
-                                'avi/panel_result.html')
 
         self.assertIn('GAVIP Example AVIs: Simple AVI'
                       + ' (Result %s)' % self.job.id,

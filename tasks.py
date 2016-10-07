@@ -106,7 +106,7 @@ class ProcessData(AviTask):
         t = Table.read(self.input().path, format='votable')
         df = pd.DataFrame(np.ma.filled(t.as_array()), columns=t.colnames)
 
-        gaiamagcols=['dec', 'dec_error', 'dist', 'phot_g_mean_flux', 'phot_g_mean_mag', 'ra', 'source_id']
+        gaiamagcols=['dec', 'dist', 'phot_g_mean_flux', 'phot_g_mean_mag', 'ra', 'source_id']
         gaiadf = df[gaiamagcols]
 
         profile = pandas_profiling.ProfileReport(gaiadf)
