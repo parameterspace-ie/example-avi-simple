@@ -213,8 +213,6 @@ once it is deployed in GAVIP.
                       resp_job_page.content)
         self.assertIn(self.job.request.pipeline_state.state,
                       resp_job_page.content)
-        self.assertIn(self.job.request.public_result_path,
-                      resp_job_page.content)
         self.assertIn('%s' % self.job.request_id,
                       resp_job_page.content)
 
