@@ -159,7 +159,7 @@ once it is deployed in GAVIP.
     def test_run_query_page_get_ok_200(self):
         # /avi/run_query/
 
-        query = "SELECT DISTANCE(POINT('ICRS',ra,dec), POINT('ICRS',266.41683,-29.00781)) AS dist, * FROM public.gaia_source  WHERE 1=CONTAINS(POINT('ICRS',ra,dec),CIRCLE('ICRS',266.41683,-29.00781, 0.08333333)) ORDER BY dist ASC"
+        query = "SELECT source_id, ra, dec, phot_g_mean_flux, phot_g_mean_mag, DISTANCE(POINT('ICRS',ra,dec), POINT('ICRS',266.41683,-29.00781)) AS dist FROM gaiadr1.gaia_source WHERE 1=CONTAINS(POINT('ICRS',ra,dec),CIRCLE('ICRS',266.41683,-29.00781, 0.08333333))"
         outputFile = 'SampleFile_1451901076099.out'
 
         response = self.client.post(reverse('avi:run_query'),
@@ -220,7 +220,7 @@ once it is deployed in GAVIP.
         # self.assertIn('%s' % reformatted_date,
         #               resp_job_page.content)
 
-        self.assertIn('%s' % self.job.request.pipeline_state.progress,
+        self.assertIn('100.0',
                       resp_job_page.content)
         self.assertIn(self.job.request.pipeline_state.exception,
                       resp_job_page.content)
@@ -251,7 +251,7 @@ once it is deployed in GAVIP.
                                                   args=(self.job.id,)))
         self.assertIn('job_id',
                       resp_job_result.context)
-        self.assertEqual('1',
+        self.assertEqual(1,
                          resp_job_result.context['job_id'])
 
     def test_job_result_page_returns_expected_content(self):
