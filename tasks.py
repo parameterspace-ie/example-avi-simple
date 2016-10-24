@@ -117,5 +117,5 @@ class ProcessData(AviTask):
         # logger.debug('analysis_context %s' % analysis_context)
         # JSON will be the context used for the template
         with open(self.output().path, 'wb') as out:
-            analysis_context = bytes(str(analysis_context), encoding="UTF-8")
+            analysis_context = bytes(dict(analysis_context), encoding="UTF-8")
             json.dump(analysis_context, out)
