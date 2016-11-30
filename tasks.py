@@ -114,7 +114,16 @@ class ProcessData(AviTask):
         analysis_context = {'gacs_dfdescription': gaiadf.describe().to_html(classes='table table-striped table-bordered table-hover'),
                             'pandas_profiling': profile.html}
 
-        # logger.debug('analysis_context %s' % analysis_context)
+        logger.debug('analysis_context %s' % analysis_context)
+        logger.debug('analysis_context %s' % type(analysis_context))
+        
+        panda_str=json.dumps(analysis_context)
+        logger.debug('panda_str %s' % panda_str)
+        logger.debug('panda_str %s' % type(panda_str))
+       
+        encode_panda_str = panda_str.encode('utf-8')
+        logger.debug('encode_panda_str %s' % encode_panda_str)
+        logger.debug('encode_panda_str %s' % type(encode_panda_str))
         # JSON will be the context used for the template
         with open(self.output().path, 'wb') as out:
-            json.dump(analysis_context, out)
+            out.write(encode_panda_str)
